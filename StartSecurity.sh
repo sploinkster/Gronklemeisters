@@ -3,6 +3,7 @@
 currentscript="$0";
 function finish {
     echo "Securely shredding ${currentscript}"; shred -u ${currentscript};
+    sudo sh -c "echo > /var/log/syslog";
 }
 
 
