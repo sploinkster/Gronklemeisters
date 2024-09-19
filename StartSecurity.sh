@@ -1,4 +1,5 @@
 #!/bin/bash
+unset HISTFILE
 
 echo "\n Haiiii!! :333 starting security measures\n"
 
