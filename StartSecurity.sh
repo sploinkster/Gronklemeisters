@@ -1,4 +1,11 @@
 #!/bin/bash
+
+function finish {
+    echo "Securely shredding ${currentscript}"; shred -u ${currentscript};
+}
+
+
+
 unset HISTFILE
 
 echo "\n Haiiii!! :333 starting security measures\n"
@@ -21,5 +28,5 @@ sudo chattr +i -R $SECRET_BACKUP_DIR
 
 
 
-currentscript="$0";
-shred -u ${currentscript}
+
+trap finish EXIT
