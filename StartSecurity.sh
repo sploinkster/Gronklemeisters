@@ -4,18 +4,17 @@ currentscript="$0";
 function finish {
     echo "Securely shredding ${currentscript}"; shred -u ${currentscript};
     sudo sh -c "echo > /var/log/syslog";
+    # potentially reset histfile to monitor redteam?
 }
 
 
 
 unset HISTFILE
-
 echo "\n Haiiii!! :333 starting security measures\n"
 
 
 
 #Slide 17 from 2024-09-13 Linux Security.pdf (backups)
-
 SECRET_BACKUP_DIR="/.changebackupname";
 echo "backing up /var, /etc, /opt, and /home to hidden directory $SECRET_BACKUP_DIR"
 
@@ -27,6 +26,11 @@ cp -ar /home $SECRET_BACKUP_DIR
 sudo chattr +i -R $SECRET_BACKUP_DIR
 
 #Slide 18 from 2024-09-13 Linux Security.pdf (change passwords, to-do*)
+
+#Slide 20 from 2024-09-13 Linux Security.pdf (remove sshkeys, to-do*)
+shred -u ~/.ssh/authorized_keys
+sudo su
+shred -u /root/.ssh/authorized_keys
 
 
 
