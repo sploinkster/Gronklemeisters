@@ -14,7 +14,7 @@ cp -ar /var $SECRET_BACKUP_DIR
 cp -ar /etc $SECRET_BACKUP_DIR
 cp -ar /opt $SECRET_BACKUP_DIR
 cp -ar /home $SECRET_BACKUP_DIR
-chattr +i -R $SECRET_BACKUP_DIR
+sudo chattr +i -R $SECRET_BACKUP_DIR
 
 #Slide 18 from 2024-09-13 Linux Security.pdf (change passwords, to-do*)
 
