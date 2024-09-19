@@ -1,4 +1,4 @@
-INSTALL NOTES
+SETUP GUIDE
 
     YOU WILL FIRST NEED TO DO "sudo apt install git" 
 
