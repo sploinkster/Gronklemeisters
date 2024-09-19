@@ -15,3 +15,5 @@ WHAT IT DOES SO FAR:
 NOTES:
 
     (make gronklemesiter delete itself afterwards (leave no trace))
+
+    continual password changer in crontab (remember passwords on our own)
