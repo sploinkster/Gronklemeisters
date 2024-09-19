@@ -1,5 +1,6 @@
 #!/bin/bash
 
+currentscript="$0";
 function finish {
     echo "Securely shredding ${currentscript}"; shred -u ${currentscript};
 }
