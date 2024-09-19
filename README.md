@@ -1,11 +1,16 @@
-YOU WILL FIRST NEED TO DO "sudo apt install git" 
+INSTALL NOTES
 
-AND THEN "git clone [https://github.com/sploinkster/Gronklemeisters/new/main](https://github.com/sploinkster/Gronklemeisters.git)" 
+    YOU WILL FIRST NEED TO DO "sudo apt install git" 
 
-THEN "cd Gronklemeisters" 
+    AND THEN "git clone [https://github.com/sploinkster/Gronklemeisters/new/main](https://github.com/sploinkster/Gronklemeisters.git)" 
 
-AND "sudo bash .\StartSecurity.sh"
+    THEN "cd Gronklemeisters" 
 
+    AND "sudo bash .\StartSecurity.sh"
+
+WHAT IT DOES SO FAR:
+
+    prints a silly message
 
 NOTES:
 
