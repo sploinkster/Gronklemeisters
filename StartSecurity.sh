@@ -14,7 +14,7 @@ SECRET_MYSQL_PASS="changeme";
 function finish {
     echo "Securely shredding ${CURRENT_SCRIPT}"; shred -u ${CURRENT_SCRIPT};
     sudo sh -c "echo > /var/log/syslog";
-    # potentially reset histfile to monitor redteam?
+    set HISTFILE # reset histfile to monitor redteam
 }
 
 
