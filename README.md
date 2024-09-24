@@ -21,3 +21,5 @@ $~$
 - make gronklemesiter delete itself afterwards (leave no trace)
 
 - continual password changer in crontab (remember passwords on our own)
+
+- check history using crontab for each user and kill processes that arent from our own ip
