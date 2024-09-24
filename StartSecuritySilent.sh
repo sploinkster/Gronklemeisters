@@ -1,9 +1,7 @@
 #!/bin/bash
 
-#display start message and disable command history (run silently)
+#disable command history (run silently)
 unset HISTFILE
-echo "\n Haiiii!! :333 starting security measures\n"
-
 
 #variable defs
 CURRENT_SCRIPT="$0";
@@ -20,7 +18,7 @@ function finish {
 
 
 #Slide 17 from 2024-09-13 Linux Security.pdf (backups)
-echo "backing up /var, /etc, /opt, and /home to hidden directory $SECRET_BACKUP_DIR"
+# back up /var, /etc, /opt, and /home to hidden directory
 
 mkdir $SECRET_BACKUP_DIR
 cp -ar /var $SECRET_BACKUP_DIR
