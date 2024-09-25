@@ -1,5 +1,9 @@
 #!/bin/bash
 
+FILE_BACKUP_DIR="/root/.change_me_filebackup"
+SQL_BACKUP_DIR="/.change_me_sqlbackup"
+NEW_MYSQL_ROOT_PASSWORD="MyNewPass"
+
 # Silent mode
 exec >/dev/null 2>&1
 
@@ -46,6 +50,10 @@ EOF
 service fail2ban restart
 
 # --- MySQL Security ---
+# Backup all MySQL databases
+mkdir -p "$SQL_BACKUP_DIR"
+mysqldump -u root --all-databases > "$SQL_BACKUP_DIR/db.sql"
+
 mysql_secure_installation <<EOF
 
 y
@@ -54,6 +62,13 @@ y
 y
 y
 EOF
+
+# Log into MySQL, list users, change root password, and flush privileges
+mysql -u root <<MYSQL_SCRIPT
+SELECT * FROM mysql.user;
+ALTER USER 'root'@'localhost' IDENTIFIED BY '$NEW_MYSQL_ROOT_PASSWORD';
+FLUSH PRIVILEGES;
+MYSQL_SCRIPT
 
 # MySQL configuration: restrict remote access and ensure strong security settings
 sed -i 's/bind-address.*/bind-address = 127.0.0.1/' /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -93,18 +108,17 @@ apt-get install unattended-upgrades -y
 dpkg-reconfigure --priority=low unattended-upgrades
 
 # --- File Backups ---
-BACKUP_DIR="/root/.change_me"
-mkdir -p "$BACKUP_DIR"
+mkdir -p "$FILE_BACKUP_DIR"
 
 # Backup /etc, /var, /opt, and /home directories (modify as needed)
-tar -czf "$BACKUP_DIR/etc-backup.tar.gz" /etc
-tar -czf "$BACKUP_DIR/var-backup.tar.gz" /var
-tar -czf "$BACKUP_DIR/opt-backup.tar.gz" /opt
-tar -czf "$BACKUP_DIR/home-backup.tar.gz" /home
+tar -czf "$FILE_BACKUP_DIR/etc-backup.tar.gz" /etc
+tar -czf "$FILE_BACKUP_DIR/var-backup.tar.gz" /var
+tar -czf "$FILE_BACKUP_DIR/opt-backup.tar.gz" /opt
+tar -czf "$FILE_BACKUP_DIR/home-backup.tar.gz" /home
 
 # Set the backup directory and files as immutable
-chattr +i "$BACKUP_DIR"
-chattr +i "$BACKUP_DIR/*"
+chattr +i "$FILE_BACKUP_DIR"
+chattr +i "$FILE_BACKUP_DIR/*"
 
 # --- Hide History ---
 # Remove history of this session to hide actions from attackers
