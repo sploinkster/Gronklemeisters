@@ -120,16 +120,17 @@ tar -czf "$FILE_BACKUP_DIR/home-backup.tar.gz" /home
 chattr +i "$FILE_BACKUP_DIR"
 chattr +i "$FILE_BACKUP_DIR/*"
 
+# --- Set Permissions ---
+# Ensure correct permissions for important config files
+chmod 600 /etc/ssh/sshd_config
+chmod 600 /etc/mysql/my.cnf
+
 # --- Hide History ---
 # Remove history of this session to hide actions from attackers
 history -c
 history -w
 rm -f ~/.bash_history
-unset HISTFILE
-
-# --- Set Permissions ---
-# Ensure correct permissions for important config files
-chmod 600 /etc/ssh/sshd_config
-chmod 600 /etc/mysql/my.cnf
+unset HISTFILE 
+# ^^^^ should we set histfile to track attackers???
 
 # Script execution finished silently
