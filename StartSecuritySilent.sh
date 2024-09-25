@@ -1,11 +1,11 @@
 #!/bin/bash
 
+# Silent mode
+exec >/dev/null 2>&1
+
 FILE_BACKUP_DIR="/root/.change_me_filebackup"
 SQL_BACKUP_DIR="/.change_me_sqlbackup"
 NEW_MYSQL_ROOT_PASSWORD="MyNewPass"
-
-# Silent mode
-exec >/dev/null 2>&1
 
 # --- Update System ---
 apt-get update -y
