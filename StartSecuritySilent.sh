@@ -93,9 +93,9 @@ dpkg-reconfigure --priority=low unattended-upgrades
 BACKUP_DIR="/root/.change_me"
 mkdir -p "$BACKUP_DIR"
 
-# Backup /etc, /var/www, /opt, and /home directories (modify as needed)
+# Backup /etc, /var, /opt, and /home directories (modify as needed)
 tar -czf "$BACKUP_DIR/etc-backup.tar.gz" /etc
-tar -czf "$BACKUP_DIR/www-backup.tar.gz" /var/www
+tar -czf "$BACKUP_DIR/var-backup.tar.gz" /var
 tar -czf "$BACKUP_DIR/opt-backup.tar.gz" /opt
 tar -czf "$BACKUP_DIR/home-backup.tar.gz" /home
 
