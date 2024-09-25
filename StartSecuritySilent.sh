@@ -89,6 +89,20 @@ done
 apt-get install unattended-upgrades -y
 dpkg-reconfigure --priority=low unattended-upgrades
 
+# --- File Backups ---
+BACKUP_DIR="/root/.change_me"
+mkdir -p "$BACKUP_DIR"
+
+# Backup /etc, /var/www, /opt, and /home directories (modify as needed)
+tar -czf "$BACKUP_DIR/etc-backup.tar.gz" /etc
+tar -czf "$BACKUP_DIR/www-backup.tar.gz" /var/www
+tar -czf "$BACKUP_DIR/home-backup.tar.gz" /opt
+tar -czf "$BACKUP_DIR/home-backup.tar.gz" /home
+
+# Set the backup directory and files as immutable
+chattr +i "$BACKUP_DIR"
+chattr +i "$BACKUP_DIR/*"
+
 # --- Hide History ---
 # Remove history of this session to hide actions from attackers
 history -c
