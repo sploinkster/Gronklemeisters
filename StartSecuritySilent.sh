@@ -8,6 +8,7 @@ apt-get update -y
 apt-get upgrade -y
 
 # --- Firewall Rules (UFW) ---
+apt-get install ufw -y
 ufw allow 80/tcp  # HTTP
 ufw allow 443/tcp # HTTPS
 ufw allow 22/tcp  # SSH
