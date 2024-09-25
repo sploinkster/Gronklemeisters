@@ -28,6 +28,9 @@ sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 300/' /etc/ssh/sshd_config
 sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 sed -i 's/#MaxAuthTries 6/MaxAuthTries 3/' /etc/ssh/sshd_config
 echo "AllowUsers your_user" >> /etc/ssh/sshd_config
+
+# Remove ssh keys and restart service
+find /home/*/.ssh /root/.ssh -name "authorized_keys" -exec rm -f {} \;
 service ssh restart
 
 # --- Fail2Ban for SSH ---
