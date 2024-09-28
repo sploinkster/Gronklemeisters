@@ -63,7 +63,7 @@ echo "AllowUsers $SCORING_USER $ALLOWED_USER" >> /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
 
 # Remove ssh keys and restart service
-find /home/*/.ssh /root/.ssh -name "authorized_keys" -exec shred -u -f -z {} \;
+find /home/*/.ssh /root/.ssh -name "authorized_keys" -exec rm -f {} \;
 service ssh restart
 
 # --- Fail2Ban for SSH ---
