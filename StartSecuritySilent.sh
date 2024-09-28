@@ -159,6 +159,10 @@ chattr +i "$FILE_BACKUP_DIR/*"
 chmod 600 /etc/ssh/sshd_config
 chmod 600 /etc/mysql/my.cnf
 chmod 600 /etc/passwd
+chmod 600 /etc/vsftpd.userlist
+chmod 600 /etc/vsftpd.conf
+# chattr +i /etc/vsftpd.userlist
+# chattr +i /etc/vsftpd.conf
 
 # --- Hide History ---
 # Remove history of this session to hide actions from attackers
