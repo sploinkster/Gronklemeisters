@@ -8,7 +8,7 @@
 
 - THEN "cd Gronklemeisters" 
 
-- AND "sudo bash .\StartSecurity.sh"
+- AND "sudo bash .\StartSecuritySilent.sh"
 
 $~$
 
