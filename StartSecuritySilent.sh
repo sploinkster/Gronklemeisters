@@ -6,6 +6,7 @@
 FILE_BACKUP_DIR="/root/.change_me_filebackup"
 SQL_BACKUP_DIR="/.change_me_sqlbackup"
 NEW_MYSQL_ROOT_PASSWORD="MyNewPass"
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # --- Update System ---
 apt-get update -y
@@ -180,5 +181,20 @@ history -w
 rm -f ~/.bash_history
 unset HISTFILE 
 # ^^^^ should we set histfile to track attackers???
+
+# --- Securely Self-Destruct ---
+# Loop through all files in the directory and securely delete them
+for FILE in "$DIR"/*; do
+  if [ "$FILE" != "$CURRENT_DIR/$(basename "$0")" ]; then
+    # Securely delete the file using shred
+    shred -u "$FILE"
+  fi
+done
+
+# Securely delete the script itself
+shred -u "$0"
+
+# Lastly, remove the directory itself
+rmdir "$DIR"
 
 # Script execution finished silently
