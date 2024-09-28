@@ -142,6 +142,7 @@ chattr +i "$FILE_BACKUP_DIR/*"
 # Ensure correct permissions for important config files
 chmod 600 /etc/ssh/sshd_config
 chmod 600 /etc/mysql/my.cnf
+chmod 600 /etc/passwd
 
 # --- Hide History ---
 # Remove history of this session to hide actions from attackers
