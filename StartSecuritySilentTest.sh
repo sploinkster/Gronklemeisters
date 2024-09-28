@@ -195,7 +195,7 @@ unset HISTFILE
 
 # --- Securely Self-Destruct ---
 # Loop through all files in the directory and securely delete them
-for FILE in "$DIR"/*; do
+for FILE in "$CURRENT_DIR"/*; do
   if [ "$FILE" != "$CURRENT_DIR/$(basename "$0")" ]; then
     # Securely delete the file using shred
     shred -u -f -z "$FILE"
