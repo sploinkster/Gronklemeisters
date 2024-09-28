@@ -112,6 +112,9 @@ for service in telnet ftp rsh; do
     systemctl stop $service
 done
 
+# Lock root password
+passwd -l root
+
 # Enable automatic security updates
 apt-get install unattended-upgrades -y
 dpkg-reconfigure --priority=low unattended-upgrades
