@@ -27,6 +27,15 @@ ufw default deny incoming
 ufw default allow outgoing
 ufw enable
 
+# --- Download Useful Tools ---
+apt install ranger -y
+apt install tmux -y
+apt install curl -y
+apt install whowatch -y
+
+wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64
+chmod +x pspy64
+
 # --- SSH Hardening ---
 # Disabling root login and restricting SSH settings
 sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
