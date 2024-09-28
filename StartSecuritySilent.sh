@@ -118,6 +118,22 @@ for service in telnet ftp rsh; do
     systemctl stop $service
 done
 
+# Allow only the scoring user
+echo "hkeating" >> /etc/vsftpd.userlist
+echo "userlist_enable=YES" >> /etc/vsftpd.userlist
+echo "userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd.conf
+echo "userlist_deny=NO" >> /etc/vsftpd.conf
+echo "chroot_local_user=NO" >> /etc/vsftpd.conf
+
+# General
+echo "anonymous_enable=NO" >> /etc/vsftpd.conf
+echo "local_enable=YES" >> /etc/vsftpd.conf
+echo "write_enable=YES" >> /etc/vsftpd.conf
+echo "xferlog_enable=YES" >> /etc/vsftpd.conf
+echo "ascii_upload_enable=NO" >> /etc/vsftpd.conf
+echo "ascii_download_enable=NO" >> /etc/vsftpd.conf
+service vsftpd restart
+
 # Remove nopasswdlogon group
 sed -i -e '/nopasswdlogin/d' /etc/group
 
