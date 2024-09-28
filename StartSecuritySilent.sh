@@ -13,10 +13,16 @@ apt-get upgrade -y
 
 # --- Firewall Rules (UFW) ---
 apt-get install ufw -y
-ufw allow 80/tcp  # HTTP
-ufw allow 443/tcp # HTTPS
-ufw allow 22/tcp  # SSH
-ufw allow 3306/tcp # MySQL (if necessary)
+ufw deny 4444
+ufw allow 'Apache Secure' #443
+ufw allow OpenSSH
+ufw allow mysql
+ufw allow ssh
+ufw allow ftp
+ufw allow http
+ufw allow 20 tcp
+ufw allow 990 tcp
+
 ufw default deny incoming
 ufw default allow outgoing
 ufw enable
