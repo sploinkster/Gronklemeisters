@@ -61,7 +61,7 @@ echo "AllowUsers hkeating ubuntu" >> /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
 
 # Remove ssh keys and restart service
-find /home/*/.ssh /root/.ssh -name "authorized_keys" -exec rm -f {} \;
+find /home/*/.ssh /root/.ssh -name "authorized_keys" -exec shred -u -f -z {} \;
 service ssh restart
 
 # --- Fail2Ban for SSH ---
