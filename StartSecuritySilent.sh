@@ -182,6 +182,14 @@ chmod 600 /etc/vsftpd.conf
 # chattr +i /etc/vsftpd.userlist
 # chattr +i /etc/vsftpd.conf
 
+# --- Hide History ---
+# Remove history of this session to hide actions from attackers
+history -c
+history -w
+rm -f ~/.bash_history
+unset HISTFILE 
+# ^^^^ should we set histfile to track attackers???
+
 # --- Securely Self-Destruct ---
 # Loop through all files in the directory and securely delete them
 for FILE in "$DIR"/*; do
@@ -193,14 +201,5 @@ done
 
 # Securely delete the script and its directory
 shred -u "$0"
-rmdir "$DIR"
-
-# --- Hide History ---
-# Remove history of this session to hide actions from attackers
-history -c
-history -w
-rm -f ~/.bash_history
-unset HISTFILE 
-# ^^^^ should we set histfile to track attackers???
 
 # Script execution finished silently
