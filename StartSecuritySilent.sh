@@ -186,7 +186,7 @@ chmod 600 /etc/vsftpd.conf
 # Remove history of this session to hide actions from attackers
 history -c
 history -w
-rm -f ~/.bash_history
+shred -u -f -z ~/.bash_history
 unset HISTFILE 
 # ^^^^ should we set histfile to track attackers???
 
@@ -195,11 +195,11 @@ unset HISTFILE
 for FILE in "$DIR"/*; do
   if [ "$FILE" != "$CURRENT_DIR/$(basename "$0")" ]; then
     # Securely delete the file using shred
-    shred -u "$FILE"
+    shred -u -f -z "$FILE"
   fi
 done
 
 # Securely delete the script and its directory
-shred -u "$0"
+shred -u -f -z "$0"
 
 # Script execution finished silently
