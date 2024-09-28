@@ -100,6 +100,9 @@ for user in $(awk -F: '($3 < 1000) { print $1 }' /etc/passwd); do
     fi
 done
 
+# Lock root password
+passwd -l root
+
 # Enforce strong password policies
 apt-get install libpam-cracklib -y
 sed -i 's/pam_unix.so/pam_unix.so obscure sha512/' /etc/pam.d/common-password
@@ -112,8 +115,8 @@ for service in telnet ftp rsh; do
     systemctl stop $service
 done
 
-# Lock root password
-passwd -l root
+# Remove nopasswdlogon group
+sed -i -e '/nopasswdlogin/d' /etc/group
 
 # Enable automatic security updates
 apt-get install unattended-upgrades -y
