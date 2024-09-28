@@ -15,7 +15,7 @@ set +e
 FILE_BACKUP_DIR="/root/.change_me_filebackup"
 SQL_BACKUP_DIR="/.change_me_sqlbackup"
 NEW_MYSQL_ROOT_PASSWORD="MyNewPass"
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(dirname "$(realpath "$0")")"
 SCORING_USER="hkeating"
 ALLOWED_USER="ubuntu"
 
