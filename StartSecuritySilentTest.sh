@@ -8,7 +8,7 @@
 
 
 # Silent mode
-# exec >/dev/null 2>&1
+#exec >/dev/null 2>&1
 
 # Declare variables (CHANGE VALUES LATER)
 FILE_BACKUP_DIR="/root/.change_me_filebackup"
@@ -20,7 +20,7 @@ ALLOWED_USER_2="ubuntu"
 
 # --- Update System ---
 apt-get update -y
-apt-get upgrade -y
+#apt-get upgrade -y
 
 # --- Firewall Rules (UFW) ---
 apt-get install ufw -y
@@ -139,7 +139,7 @@ for service in telnet ftp rsh; do
 done
 
 # Allow only the scoring user
-echo "hkeating" >> /etc/vsftpd.userlist
+echo "$ALLOWED_USER_1" >> /etc/vsftpd.userlist
 echo "userlist_enable=YES" >> /etc/vsftpd.userlist
 echo "userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd.conf
 echo "userlist_deny=NO" >> /etc/vsftpd.conf
