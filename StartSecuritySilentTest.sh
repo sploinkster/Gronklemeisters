@@ -173,7 +173,9 @@ tar -czf "$FILE_BACKUP_DIR/home-backup.tar.gz" /home
 
 # Set the backup directory and files as immutable
 chattr +i "$FILE_BACKUP_DIR"
-chattr +i "$FILE_BACKUP_DIR/*"
+find "$FILE_BACKUP_DIR" -type f -exec chattr +i {} \;
+chattr +i "$SQL_BACKUP_DIR"
+find "$SQL_BACKUP_DIR" -type f -exec chattr +i {} \;
 
 # --- Set Permissions ---
 # Ensure correct permissions for important config files
