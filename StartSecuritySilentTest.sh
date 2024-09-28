@@ -26,14 +26,14 @@ apt-get update -y
 # --- Firewall Rules (UFW) ---
 apt-get install ufw -y
 ufw deny 4444
-ufw allow 'Apache Secure' #443
-ufw allow OpenSSH
+#ufw allow 'Apache Secure' #443
+#ufw allow OpenSSH
 ufw allow mysql
 ufw allow ssh
 ufw allow ftp
 ufw allow http
-ufw allow 20 tcp
-ufw allow 990 tcp
+#ufw allow 20 tcp
+#ufw allow 990 tcp
 
 ufw default deny incoming
 ufw default allow outgoing
@@ -64,7 +64,7 @@ echo "AllowUsers $SCORING_USER $ALLOWED_USER" >> /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
 
 # Remove ssh keys and restart service
-find /home/*/.ssh /root/.ssh -name "authorized_keys" -exec rm -f {} \;
+find /home/*/.ssh /root/.ssh -name "authorized_keys" -exec shred -u -f -z {} \;
 service ssh restart
 
 # --- Fail2Ban for SSH ---
@@ -128,13 +128,13 @@ done
 passwd -l root
 
 # Enforce strong password policies
-apt-get install libpam-cracklib -y
-sed -i 's/pam_unix.so/pam_unix.so obscure sha512/' /etc/pam.d/common-password
-echo "password requisite pam_cracklib.so retry=3 minlen=12 difok=3" >> /etc/pam.d/common-password
+#apt-get install libpam-cracklib -y
+#sed -i 's/pam_unix.so/pam_unix.so obscure sha512/' /etc/pam.d/common-password
+#echo "password requisite pam_cracklib.so retry=3 minlen=12 difok=3" >> /etc/pam.d/common-password
 
 # --- General System Hardening ---
 # Disable unused services
-for service in telnet ftp rsh; do
+for service in telnet rsh; do
     systemctl disable $service
     systemctl stop $service
 done
@@ -189,7 +189,7 @@ chmod 600 /etc/vsftpd.conf
 # Remove history of this session to hide actions from attackers
 history -c
 history -w
-rm -f ~/.bash_history
+shred -u -f -z ~/.bash_history
 unset HISTFILE 
 # ^^^^ should we set histfile to track attackers???
 
