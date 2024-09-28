@@ -118,7 +118,7 @@ sudo chown -R root:root /etc/apache2
 # --- User Account Hardening ---
 # Lock down unused accounts and ensure strong password policies
 for user in $(awk -F: '($3 < 1000) { print $1 }' /etc/passwd); do
-    if [[ "$user" != "$ALLOWED_USER_1" && "$user" != "root" && "$user" != "$ALLOWED_USER_2"]]; then
+    if [[ "$user" != "$ALLOWED_USER_1" && "$user" != "root" && "$user" != "$ALLOWED_USER_2" ]]; then
         usermod -L $user
     fi
 done
