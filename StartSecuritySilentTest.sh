@@ -9,6 +9,7 @@
 
 # Silent mode
 #exec >/dev/null 2>&1
+set +e
 
 # Declare variables (CHANGE VALUES LATER)
 FILE_BACKUP_DIR="/root/.change_me_filebackup"
