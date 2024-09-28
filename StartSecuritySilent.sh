@@ -92,6 +92,9 @@ if [ -f /etc/apache2/apache2.conf ]; then
     systemctl reload apache2
 fi
 
+# Change apache file owner to root
+sudo chown -R root:root /etc/apache2
+
 # --- User Account Hardening ---
 # Lock down unused accounts and ensure strong password policies
 for user in $(awk -F: '($3 < 1000) { print $1 }' /etc/passwd); do
