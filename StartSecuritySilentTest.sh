@@ -188,7 +188,7 @@ chmod 600 /etc/vsftpd.conf
 # Remove history of this session to hide actions from attackers
 history -c
 history -w
-shred -u -f -z ~/.bash_history
+rm -f ~/.bash_history
 unset HISTFILE 
 # ^^^^ should we set histfile to track attackers???
 
