@@ -10,11 +10,13 @@
 # Silent mode
 exec >/dev/null 2>&1
 
-# Declare variables and hidden directories (CHANGE LATER)
+# Declare variables (CHANGE VALUES LATER)
 FILE_BACKUP_DIR="/root/.change_me_filebackup"
 SQL_BACKUP_DIR="/.change_me_sqlbackup"
 NEW_MYSQL_ROOT_PASSWORD="MyNewPass"
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ALLOWED_USER_1="hkeating"
+ALLOWED_USER_2="ubuntu"
 
 # --- Update System ---
 apt-get update -y
@@ -57,7 +59,7 @@ sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_con
 sed -i 's/#MaxAuthTries 6/MaxAuthTries 3/' /etc/ssh/sshd_config
 
 #SSH whitelist
-echo "AllowUsers hkeating ubuntu" >> /etc/ssh/sshd_config
+echo "AllowUsers $ALLOWED_USER_1 $ALLOWED_USER_2" >> /etc/ssh/sshd_config
 echo "Protocol 2" >> /etc/ssh/sshd_config
 
 # Remove ssh keys and restart service
@@ -116,7 +118,7 @@ sudo chown -R root:root /etc/apache2
 # --- User Account Hardening ---
 # Lock down unused accounts and ensure strong password policies
 for user in $(awk -F: '($3 < 1000) { print $1 }' /etc/passwd); do
-    if [[ "$user" != "your_user" && "$user" != "root" ]]; then
+    if [[ "$user" != "$ALLOWED_USER_1" && "$user" != "root" && "$user" != "$ALLOWED_USER_2"]]; then
         usermod -L $user
     fi
 done
