@@ -26,7 +26,8 @@ apt-get update -y
 # --- Firewall Rules (UFW) ---
 apt-get install ufw -y
 ufw deny 4444
-ufw allow apache
+ufw allow 'Apache Secure' #443
+ufw allow OpenSSH
 ufw allow mysql
 ufw allow ssh
 ufw allow ftp
