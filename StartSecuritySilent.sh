@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Super awesome security hardening script written by blue lobster man
+# (I have no idea wjhat im doing :33333)
+
 # Silent mode
 exec >/dev/null 2>&1
 
