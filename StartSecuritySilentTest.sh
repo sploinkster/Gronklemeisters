@@ -12,9 +12,9 @@
 set +e
 
 # Declare variables (CHANGE VALUES LATER)
-FILE_BACKUP_DIR="/root/.change_me_filebackup"
-SQL_BACKUP_DIR="/.change_me_sqlbackup"
-NEW_MYSQL_ROOT_PASSWORD="MyNewPass"
+FILE_BACKUP_DIR="/root/.if_you_change_me_youre_stinky"
+SQL_BACKUP_DIR="/.change_me_if_youre_stinky"
+NEW_MYSQL_ROOT_PASSWORD="NobodyWillGuessThis"
 CURRENT_DIR="$(dirname "$(realpath "$0")")"
 SCORING_USER="hkeating"
 ALLOWED_USER="plinktern"
