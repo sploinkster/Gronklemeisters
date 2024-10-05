@@ -17,7 +17,7 @@ SQL_BACKUP_DIR="/.change_me_sqlbackup"
 NEW_MYSQL_ROOT_PASSWORD="MyNewPass"
 CURRENT_DIR="$(dirname "$(realpath "$0")")"
 SCORING_USER="hkeating"
-ALLOWED_USER="ubuntu"
+ALLOWED_USER="plinktern"
 
 # --- Update System ---
 apt-get update -y
@@ -35,8 +35,8 @@ ufw allow http
 #ufw allow 20 tcp
 #ufw allow 990 tcp
 
-ufw default deny incoming
-ufw default allow outgoing
+#ufw default deny incoming
+#ufw default allow outgoing
 ufw enable
 
 # --- Download Useful Tools ---
@@ -51,12 +51,12 @@ chmod +x pspy64
 # --- SSH Hardening ---
 # Disabling root login and restricting SSH settings
 sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+#sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 sed -i 's/X11Forwarding yes/X11Forwarding no/' /etc/ssh/sshd_config
-sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
+#sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
 sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding no/' /etc/ssh/sshd_config
 sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 300/' /etc/ssh/sshd_config
-sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+#sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 sed -i 's/#MaxAuthTries 6/MaxAuthTries 3/' /etc/ssh/sshd_config
 
 #SSH whitelist
