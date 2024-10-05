@@ -155,7 +155,8 @@ echo "userlist_deny=NO" >> /etc/vsftpd.conf
 echo "chroot_local_user=NO" >> /etc/vsftpd.conf
 
 # General
-echo "anonymous_enable=NO" >> /etc/vsftpd.conf
+#echo "anonymous_enable=NO" >> /etc/vsftpd.conf
+echo "anonymous_enable=YES" >> /etc/vsftpd.conf
 echo "local_enable=YES" >> /etc/vsftpd.conf
 echo "write_enable=YES" >> /etc/vsftpd.conf
 echo "xferlog_enable=YES" >> /etc/vsftpd.conf
