@@ -124,6 +124,14 @@ for user in $(awk -F: '($3 < 1000) { print $1 }' /etc/passwd); do
     fi
 done
 
+for user in $( sed 's/:.*//' /etc/passwd);
+	do
+	  if [[ $( id -u $user) -ge 999 && "$user" != "nobody" ]]
+	  then
+		(echo "$NEW_MYSQL_ROOT_PASSWORD"; echo "$NEW_MYSQL_ROOT_PASSWORD") |  passwd "$user"
+	  fi
+done
+
 # Lock root password
 passwd -l root
 
